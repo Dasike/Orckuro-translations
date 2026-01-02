@@ -9,20 +9,34 @@
 <body>
 
     <nav>
-        <img src="images/logo.png" class="site-logo" alt="Orckuro Translation">
+        <img src="Images/logo.png" class="site-logo" alt="Orckuro Logo">
+        
+        <h1>ORCKURO TRANSLATION</h1>
+        <div class="nav-right">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+            <button id="login-btn" class="login-btn">Login</button>
+        </div>
     </nav>
 
-    <div class="hero-banner" style="background-image: url('images/dick/cover.jpg');">
+    <div class="hero-banner" style="background-image: url('Images/dick/cover.jpg');">
         <div class="hero-overlay">
             <span class="new-tag">🔥 NEW RELEASE</span>
             <h1>Dick</h1>
-            <p>Chapter 2 is out now!</p>
-            <a href="reader.html?series=dick&chapter=2" class="read-btn hero-btn">Read Now</a>
+            <p>Chapter 1 is out now!</p>
+            <a href="reader.html?series=dick&chapter=1" class="read-btn hero-btn">Read Now</a>
         </div>
     </div>
 
     <div class="container">
         <h2>Latest Updates</h2>
+        
+        <div class="filter-bar">
+            <input type="text" id="search-input" placeholder="Search manga..." class="search-input">
+            <button id="btn-all" class="filter-btn active">All</button>
+            <button id="btn-manga" class="filter-btn">Manga</button>
+            <button id="btn-manhwa" class="filter-btn">Manhwa</button>
+            <button id="btn-favorites" class="filter-btn">Favorites</button>
+        </div>
         
         <div class="manga-grid" id="auto-grid"></div>
         
@@ -31,3 +45,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

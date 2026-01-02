@@ -5,27 +5,81 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- NAVIGATION & LOGO --- */
+body.light {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* --- NAVIGATION (UPDATED FOR TOP LEFT) --- */
 nav {
     background-color: #1f1f1f;
-    padding: 15px;
+    padding: 10px 20px; /* Space around the bar */
     border-bottom: 2px solid #333;
+    
+    /* LEFT ALIGNMENT */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes content to the left */
+    gap: 15px; /* Space between Logo and Text */
+    
     position: sticky;
     top: 0;
     z-index: 100;
-    text-align: center;
+}
+
+body.light nav {
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
 }
 
 .site-logo {
-    height: 40px; /* Adjust to fit your logo size */
+    height: 65px; /* Bigger size for your new logo */
     width: auto;
     display: block;
-    margin: 0 auto;
+    border-radius: 50%; /* Keeps it circular */
+}
+
+.nav-right {
+    display: flex;
+    gap: 10px;
+}
+
+/* SITE NAME TEXT STYLE */
+nav h1 {
+    color: #bb86fc;
+    margin: 0;
+    font-size: 1.2rem; /* Adjusted size so it fits well */
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px #000;
+}
+
+body.light nav h1 {
+    color: #6200ea;
+    text-shadow: none;
+}
+
+.theme-btn, .login-btn {
+    background: #333;
+    color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+body.light .theme-btn, body.light .login-btn {
+    background: #ddd;
+    color: #333;
 }
 
 a { text-decoration: none; color: inherit; }
+
 
 /* --- HERO BANNER --- */
 .hero-banner {
@@ -41,7 +95,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-overlay {
-    background: rgba(0, 0, 0, 0.7); /* Darkens image */
+    background: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100%;
     display: flex;
@@ -50,6 +104,11 @@ a { text-decoration: none; color: inherit; }
     justify-content: center;
     text-align: center;
     color: white;
+}
+
+body.light .hero-overlay {
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
 }
 
 .new-tag {
@@ -71,8 +130,16 @@ a { text-decoration: none; color: inherit; }
     display: inline-block;
 }
 
+body.light .hero-btn {
+    background: #6200ea !important;
+    color: white !important;
+}
+
+
 /* --- MAIN GRID --- */
 .container { padding: 20px; max-width: 100%; }
+
+h2 { margin-left: 10px; }
 
 .manga-grid {
     display: flex;
@@ -93,8 +160,35 @@ a { text-decoration: none; color: inherit; }
     align-items: center;
     padding-bottom: 15px;
     transition: transform 0.2s;
+    position: relative;
 }
+
+body.light .manga-card {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .manga-card:hover { transform: scale(1.02); }
+
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.favorite-btn:hover {
+    opacity: 1;
+}
+
+.favorite-btn.favorited {
+    color: #ff4757;
+}
 
 .card-img {
     width: 100%;
@@ -116,7 +210,14 @@ h3 {
     font-weight: bold;
     font-size: 0.9rem;
     margin-top: auto;
+    transition: background 0.3s;
 }
+
+body.light .read-btn {
+    background: #6200ea;
+    color: #fff;
+}
+
 
 /* --- READER PAGE --- */
 .reader-nav {
@@ -124,6 +225,13 @@ h3 {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
+    background: #1f1f1f;
+    color: #e0e0e0;
+}
+
+body.light .reader-nav {
+    background: #fff;
+    color: #333;
 }
 
 .vertical-mode {
@@ -131,6 +239,10 @@ h3 {
     margin: 0 auto;
     min-height: 80vh;
     background: #000;
+}
+
+body.light .vertical-mode {
+    background: #f5f5f5;
 }
 
 .vertical-mode img {
@@ -141,6 +253,11 @@ h3 {
 .chapter-nav {
     text-align: center;
     padding: 40px;
+    background: #1f1f1f;
+}
+
+body.light .chapter-nav {
+    background: #fff;
 }
 
 button {
@@ -153,7 +270,125 @@ button {
     border-radius: 5px;
 }
 
+body.light button {
+    background: #ddd;
+    color: #333;
+}
+
 /* PHONE FIX */
 @media (max-width: 600px) {
-    .manga-card { width: 100%; }
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    nav h1 {
+        font-size: 1rem;
+    }
+    .nav-right {
+        order: 2;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    .manga-card { 
+        width: 100%; 
+        max-width: none;
+    }
+    .filter-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .search-input {
+        width: 100%;
+        max-width: 300px;
+    }
+    .hero-banner {
+        height: 200px;
+    }
+    .hero-overlay h1 {
+        font-size: 1.5rem;
+    }
+    .reader-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
+/* --- FILTER BUTTONS --- */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center; /* Center the buttons */
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #333;
+    color: #e0e0e0;
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+body.light .search-input {
+    background: #ddd;
+    color: #333;
+}
+
+.filter-btn {
+    background: #333;
+    color: #888;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+body.light .filter-btn {
+    background: #ddd;
+    color: #666;
+}
+
+.filter-btn.active {
+    background: #bb86fc; /* Purple when active */
+    color: #000;
+}
+
+body.light .filter-btn.active {
+    background: #6200ea;
+    color: #fff;
+}
+
+/* --- TYPE BADGE (Manhwa/Manga Label) --- */
+.manga-card {
+    position: relative; /* Needed for the badge to sit on top */
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    z-index: 10;
+}
+
+/* Different colors for different types */
+.card-badge.manhwa { background-color: #03DAC6; color: black; } /* Teal */
+.card-badge.manga  { background-color: #FF5252; } /* Red */
+
+/* Continue Button Active Style */
+.continue-active {
+    background-color: #03DAC6 !important;
+    color: #000 !important;
+}
+
+
