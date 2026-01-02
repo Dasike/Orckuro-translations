@@ -12,7 +12,7 @@ async function loadMangaList() {
         // Fallback to hardcoded list
         mangaList = [
             { id: "dick", title: "Dick", type: "manhwa" },
-            { id: "one_piece", title: "One Piece", type: "manga" }
+            { id: "La_triste_vida_de_helen", title: "La triste vida de helen ", type: "manhwa" }
         ];
     }
 }
