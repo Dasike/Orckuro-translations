@@ -205,7 +205,7 @@ if (readerContainer) {
     function loadNextPage() {
         if (!keepLoading) return;
         const img = document.createElement('img');
-        img.src = `Images/${series}/ch${chapter}/${pageNum}.jpg`;
+        img.src = `Images/${series}/ch${chapter}/${pageNum.toString().padStart(2, '0')}.jpg`;
         img.onload = function() {
             readerContainer.appendChild(img);
             pageNum++;
@@ -214,7 +214,7 @@ if (readerContainer) {
         img.onerror = function() {
             keepLoading = false;
             if (pageNum === 1) {
-                readerContainer.innerHTML = "<h2 style='text-align:center; padding:50px; color:white;'>No images found.<br><small>Use 1.jpg, 2.jpg...</small></h2>";
+                readerContainer.innerHTML = "<h2 style='text-align:center; padding:50px; color:white;'>No images found.<br><small>Use 01.jpg, 02.jpg...</small></h2>";
             } else {
                 const endMsg = document.createElement('h3');
                 endMsg.innerText = "— END OF CHAPTER —";
