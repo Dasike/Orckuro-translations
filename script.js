@@ -1,12 +1,21 @@
 // ==================================================
-// 1. YOUR MANGA LIST (NOW WITH TYPES!)
+// 1. LOAD MANGA LIST FROM JSON
 // ==================================================
-// type: "manga"  = Japanese (Usually Black & White)
-// type: "manhwa" = Korean (Usually Color / Long Strip)
-const mangaList = [
-    { id: "dick",        title: "Dick",       type: "manhwa" },
-    { id: "one_piece",   title: "One Piece",  type: "manga" }
-];
+let mangaList = [];
+
+async function loadMangaList() {
+    try {
+        const response = await fetch('manga.json');
+        mangaList = await response.json();
+    } catch (error) {
+        console.error('Failed to load manga list:', error);
+        // Fallback to hardcoded list
+        mangaList = [
+            { id: "dick", title: "Dick", type: "manhwa" },
+            { id: "one_piece", title: "One Piece", type: "manga" }
+        ];
+    }
+}
 
 
 // ==================================================
@@ -76,26 +85,28 @@ function filterContent(category, search = currentSearch) {
 
 // Run this when the page loads to show everything first
 if (grid) {
-    filterContent('all');
-    
-    // Event listeners for filter buttons
-    document.getElementById('btn-all').addEventListener('click', () => filterContent('all'));
-    document.getElementById('btn-manga').addEventListener('click', () => filterContent('manga'));
-    document.getElementById('btn-manhwa').addEventListener('click', () => filterContent('manhwa'));
-    document.getElementById('btn-favorites').addEventListener('click', () => filterContent('favorites'));
-    
-    // Search input
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => filterContent(currentCategory, e.target.value));
-    }
-    
-    // Favorites
-    grid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('favorite-btn')) {
-            const id = e.target.dataset.id;
-            toggleFavorite(id);
-            e.target.classList.toggle('favorited');
+    loadMangaList().then(() => {
+        filterContent('all');
+        
+        // Event listeners for filter buttons
+        document.getElementById('btn-all').addEventListener('click', () => filterContent('all'));
+        document.getElementById('btn-manga').addEventListener('click', () => filterContent('manga'));
+        document.getElementById('btn-manhwa').addEventListener('click', () => filterContent('manhwa'));
+        document.getElementById('btn-favorites').addEventListener('click', () => filterContent('favorites'));
+        
+        // Search input
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => filterContent(currentCategory, e.target.value));
         }
+        
+        // Favorites
+        grid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('favorite-btn')) {
+                const id = e.target.dataset.id;
+                toggleFavorite(id);
+                e.target.classList.toggle('favorited');
+            }
+        });
     });
 }
 
