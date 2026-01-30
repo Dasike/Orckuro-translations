@@ -9,21 +9,22 @@
 <body>
 
     <nav>
-        <img src="Images/logo.png" class="site-logo" alt="Orckuro Logo">
+        <img src="Images/logo.png" class="site-logo" alt="Orckuro Logo" draggable="false">
         
         <h1>ORCKURO TRANSLATION</h1>
         <div class="nav-right">
             <button id="theme-toggle" class="theme-btn">🌙</button>
+            <button id="upload-btn" class="theme-btn" style="display: none;">Upload</button>
             <button id="login-btn" class="login-btn">Login</button>
         </div>
     </nav>
 
-    <div class="hero-banner" style="background-image: url('Images/dick/cover.jpg');">
+    <div class="hero-banner" id="hero-banner">
         <div class="hero-overlay">
-            <span class="new-tag">🔥 NEW RELEASE</span>
-            <h1>Dick</h1>
-            <p>Chapter 1 is out now!</p>
-            <a href="reader.html?series=dick&chapter=1" class="read-btn hero-btn">Read Now</a>
+            <span class="new-tag" id="hero-newtag" style="display:none">🔥 NEW RELEASE</span>
+            <h1 id="hero-title">Loading...</h1>
+            <p id="hero-sub">Chapter 1 is out now!</p>
+            <a href="#" id="hero-read" class="read-btn hero-btn">Read Now</a>
         </div>
     </div>
 
@@ -42,7 +43,36 @@
         
     </div>
 
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Upload Chapter</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="series-select">Series</label>
+                    <select id="series-select">
+                        <option value="new">+ New Series</option>
+                    </select>
+                </div>
+                <div class="form-group" id="new-series-group" style="display:block;">
+                    <label for="new-series-name">New Series Name</label>
+                    <input type="text" id="new-series-name" placeholder="e.g. Solo Leveling">
+                </div>
+                <div class="form-group">
+                    <label for="chapter-num">Chapter Number</label>
+                    <input type="number" id="chapter-num" min="1" placeholder="e.g. 15" required>
+                </div>
+                <div class="form-group">
+                    <label for="chapter-files">Images (Select all pages)</label>
+                    <input type="file" id="chapter-files" multiple accept="image/*" required>
+                </div>
+                <button type="submit" class="theme-btn" style="width:100%">Start Upload</button>
+            </form>
+            <div id="upload-status" style="margin-top:15px; text-align:center; font-weight:bold;"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-

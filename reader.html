@@ -13,12 +13,12 @@
         <span id="chapter-title">Loading...</span>
     </nav>
 
-    <div id="reader-container" class="vertical-mode">
-        </div>
+    <div id="reader-container" class="vertical-mode" oncontextmenu="return false;">
+    </div>
 
     <div class="chapter-nav">
-        <button onclick="changeChapter(-1)">Previous</button>
-        <button onclick="changeChapter(1)">Next Chapter</button>
+        <button onclick="changeChapter(-1)" aria-label="Go to previous chapter">Previous</button>
+        <button onclick="changeChapter(1)" aria-label="Go to next chapter">Next Chapter</button>
     </div>
 
     <script src="script.js"></script>

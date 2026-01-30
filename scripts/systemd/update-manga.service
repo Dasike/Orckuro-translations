@@ -1,0 +1,14 @@
+[Unit]
+Description=Orckuro - Update Manga Metadata Watcher
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/Orckuro-translations
+ExecStart=/usr/bin/node /path/to/Orckuro-translations/scripts/update_manga_metadata.js --watch
+Restart=on-failure
+User=www-data
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

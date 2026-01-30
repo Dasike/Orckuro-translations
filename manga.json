@@ -2,11 +2,15 @@
     {
         "id": "dick",
         "title": "Dick",
-        "type": "manhwa"
+        "type": "manhwa",
+        "latestChapter": 1,
+        "isNew": true
     },
     {
         "id": "La_triste_vida_de_helen",
         "title": "la triste vida de helen",
-        "type": "manhwa"
+        "type": "manhwa",
+        "latestChapter": 2,
+        "isNew": false
     }
 ]
